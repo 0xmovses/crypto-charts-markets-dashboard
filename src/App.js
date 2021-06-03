@@ -4,7 +4,6 @@ import './App.css';
 import Coin from './Coin';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CoinFilter from './components/CoinFilter.js'
-import Container from 'react-bootstrap/Container'
 
 
 function App() {
