@@ -1,4 +1,3 @@
-import {useState} from 'react'
 import CoinFilter from './CoinFilter.js'
 import Coin from './Coin';
 
