@@ -1,10 +1,8 @@
-# Getting Started with Create React App
+# `crypto dashboard ` 
+made using react and axios to fetch from coingecko api. With sorting functionality to sort by marketcap, volume, 24h percentage change etc.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## `live demo`
 
-## Available Scripts
-
-In the project directory, you can run:
 
 ### `yarn start`
 
