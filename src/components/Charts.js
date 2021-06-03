@@ -1,5 +1,5 @@
 
-const Charts = () => {
+const Charts = ({setShowCharts}) => {
     return (
         <div>
         Many Charts

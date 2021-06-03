@@ -14,7 +14,7 @@ import '../coin.css'
            <div className='coin'>
              <img src={image} alt='crypto' />
              <h1>{name}</h1>
-             <p className='coin-symbol'>{symbol}</p>
+             <h1 className='coin-symbol' style={{justifyItems: 'right'}}>{symbol}</h1>
             </div>
             <div className='coin-data'>
             <p className='coin-price'>${price}</p>
@@ -25,7 +25,7 @@ import '../coin.css'
             <p className='coin-percent green'>{formatPercent(priceChange)}</p>
             )}
             <p className='coin-marketcap'>
-            Mkt Cap : ${marketcap.toLocaleString()}
+            Mkt cap: ${marketcap.toLocaleString()}
             </p>
         </div>
       </div>
