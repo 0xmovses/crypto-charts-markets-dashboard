@@ -2,8 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import Coin from './Coin';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import CoinFilter from './components/CoinFilter.js'
+import Container from 'react-bootstrap/Container'
+
 
 function App() {
+
   const [coins, setCoins] = useState([]);
   const [search, setSearch] = useState('');
 
@@ -29,6 +34,7 @@ function App() {
 
   return (
     <div className='coin-app'>
+
       <div className='coin-search'>
         <h1 className='coin-text'>market overview</h1>
         <form>
@@ -40,6 +46,9 @@ function App() {
           />
         </form>
       </div>
+      <div className='Container'>
+        <CoinFilter coins={filteredCoins} setCoins={setCoins}/>
+        <br></br>
       {filteredCoins.map(coin => {
         return (
           <Coin
@@ -47,13 +56,14 @@ function App() {
             name={coin.name}
             price={coin.current_price}
             symbol={coin.symbol}
-            marketcap={coin.total_volume}
-            volume={coin.market_cap}
+            marketcap={coin.market_cap}
+            volume={coin.total_volume}
             image={coin.image}
             priceChange={coin.price_change_percentage_24h}
           />
         );
       })}
+      </div>
     </div>
   );
 }

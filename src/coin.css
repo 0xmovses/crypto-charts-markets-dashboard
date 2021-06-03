@@ -9,15 +9,22 @@
   justify-content: start;
   align-items: center;
   height: 80px;
-  border-bottom: 1px solid #d7d7d7;
+  border-bottom: 1px solid #666666;
   width: 900px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #710360;
+    background-color: cutom-color;
+    border-color: #2E4C80;
+    border-color: cutom-cor;
 }
 
 .coin {
   display: flex;
   align-items: center;
   padding-right: 24px;
-
   min-width: 300px;
 }
 
