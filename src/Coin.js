@@ -3,8 +3,11 @@ import './coin.css'
 
  const Coin = ({ name, image, symbol, price, volume, priceChange, marketcap }) => {
 
-   const formatPercent = number =>
-   `${new Number(number).toFixed(2)}%`
+   const formatPercent = number => {
+     let string = number.toFixed(2).toString();
+     string += '%';
+     return string;
+ }
 
      return (
        <div className='coin-container'>
