@@ -1,5 +1,4 @@
-
-import './coin.css'
+import '../coin.css'
 
  const Coin = ({ name, image, symbol, price, volume, priceChange, marketcap }) => {
 

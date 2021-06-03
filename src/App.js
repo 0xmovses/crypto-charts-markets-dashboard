@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
-import Coin from './Coin';
+import Charts from './components/Charts.js'
+import List from './components/List.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CoinFilter from './components/CoinFilter.js'
-
+import {Button, Container, Row, Col} from 'react-bootstrap'
 
 function App() {
 
   const [coins, setCoins] = useState([]);
   const [search, setSearch] = useState('');
+  const [showCharts, setShowCharts] = useState(false);
 
   useEffect(() => {
     axios
@@ -27,15 +28,19 @@ function App() {
     setSearch(e.target.value);
   };
 
+  const onClick = () => setShowCharts(true);
+
   const filteredCoins = coins.filter(coin =>
     coin.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div className='coin-app'>
-
+      <h1 className='coin-text'>market overview</h1>
+      <Container>
+        <Row>
+          <Col>
       <div className='coin-search'>
-        <h1 className='coin-text'>market overview</h1>
         <form>
           <input
             className='coin-input'
@@ -44,25 +49,15 @@ function App() {
             placeholder='search'
           />
         </form>
-      </div>
-      <div className='Container'>
-        <CoinFilter coins={filteredCoins} setCoins={setCoins}/>
-        <br></br>
-      {filteredCoins.map(coin => {
-        return (
-          <Coin
-            key={coin.id}
-            name={coin.name}
-            price={coin.current_price}
-            symbol={coin.symbol}
-            marketcap={coin.market_cap}
-            volume={coin.total_volume}
-            image={coin.image}
-            priceChange={coin.price_change_percentage_24h}
-          />
-        );
-      })}
-      </div>
+        </div>
+        </Col>
+        <Col className="d-flex justify-content-end" style={{paddingBottom: '70px'}}>
+        <Button className='chart-btn' size='lg' onClick={onClick}>charts</Button>
+        </Col>
+    </Row>
+      </Container>
+      {showCharts ? <Charts /> : <List filteredCoins={filteredCoins} setCoins={setCoins} />}
+
     </div>
   );
 }
