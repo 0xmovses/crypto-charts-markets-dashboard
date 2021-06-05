@@ -1,8 +1,9 @@
 
-const Dropdown = ({ setCoin, filteredCoins, coin}) => {
+const Dropdown = ({ setCoin, filteredCoins, coin, firstUpdate}) => {
 
   const handleChange = (e) => {
     setCoin(e.target.value);
+    console.log('./Dropdown: coin is', e.target.value)
   }
 
     return (

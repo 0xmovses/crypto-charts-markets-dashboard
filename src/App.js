@@ -61,7 +61,9 @@ function App() {
           </Col>
         </Row>
       </Container>
-      {showCharts ? <Charts setShowCharts={setShowCharts} filteredCoins={filteredCoins} setCoins={setCoins} coins={coins}/> : <List filteredCoins={filteredCoins} setCoins={setCoins} />}
+      {showCharts ? <Charts
+        filteredCoins={filteredCoins}/> :
+        <List filteredCoins={filteredCoins} setCoins={setCoins} />}
     </div>
   );
 }

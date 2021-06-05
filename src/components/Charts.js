@@ -1,7 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import HistoricalChart from './HistoricalChart.js'
 import {Row, Col, Container} from 'react-bootstrap'
-import CoinData from './CoinData.js'
 import Dropdown from './Dropdown.js'
 import { format, sub, eachDayOfInterval } from 'date-fns'
 import axios from 'axios';
@@ -9,14 +7,17 @@ import { Line } from 'react-chartjs-2'
 
 const Charts = ({ filteredCoins }) => {
 
-  const [coin, setCoin] = useState('bitcoin');
-  const [priceData, setPriceData] = useState();
-  const [prices, setPrices] = useState()
-  const [chartData, setChartData] = useState()
-  const [dates, setDates] = useState()
-  const childRef = useRef(false);
+  let priceData = [];
+  let price = [];
+  let dates;
 
-  useEffect( () => {
+  const [coin, setCoin] = useState();
+  const [prices, setPrices] = useState()
+  const [chartData, setChartData] = useState({})
+
+
+  const chart = () => {
+
     axios
       .get(
         `https://api.coingecko.com/api/v3/coins/${coin}/market_chart`, {
@@ -26,16 +27,14 @@ const Charts = ({ filteredCoins }) => {
           }
         })
       .then(res => {
-        childRef.current = true;
-        setPriceData(res.data.prices)
-        console.log(`price Data of ${coin} is`, priceData);
+        console.log('res data prices', res.data.prices);
+        priceData = res.data.prices.map( e => { return e})
+        getDates();
         getPrices();
-      })
-      .catch(error => console.log(error))
-      getDates();
-      historicalChart();
-
-  }, [coin])
+        historicalChart();
+    })
+    .catch(error => console.log(error))
+}
 
   const getDates = () => {
 
@@ -48,64 +47,59 @@ const Charts = ({ filteredCoins }) => {
       const dateFormatted = format(el, 'MM/dd/yy');
       return dateFormatted
     });
-    setDates(rangeFormatted);
+    dates = rangeFormatted
   }
 
   const getPrices = () => {
-      if(priceData){
-      const targetData = [];
-      Object.values(priceData).forEach(val =>
-        targetData.push(val[1]));
-      setPrices(targetData);
-    }
+    const targetData = [];
+    Object.values(priceData).forEach(val =>
+      targetData.push(val[1]) );
+    price = targetData.map( e => { return e});
+    console.log('price is', price)
+
 }
 
 const historicalChart =() => {
-  setChartData({
-    labels: dates,
-    datasets: [
-      {
-        label: 'daily closes',
-        data: prices,
-        fill: true,
-        borderColor : 'purple',
-        tension: 0.1
-      }
-    ]
-  })
+    setChartData({
+      labels: dates,
+      datasets: [
+        {
+          label: 'daily closes in USD',
+          data: price,
+          fill: true,
+          backgroundColor: 'rgb(244, 164, 231)',
+          borderColor : 'purple',
+          tension: 0.1
+        }
+      ]
+    })
 }
 
-
-
-  console.log('prices are', prices);
+useEffect( () => {
+  chart();
+}, [coin]);
 
     return (
           <Container>
             <Row>
-              <Col>
-                <Dropdown filteredCoins={filteredCoins} setCoin={setCoin} coin={coin}/>
-              </Col>
-              <Col>
-                <Line
-                  data={chartData}
-                  height={400}
-                  width={900}
-                  options={{
-                    maintainAspectRatio: false,
-                  }} />
-                </Col>
+            <Col>
+              <p>the api may not fetch data immedietly</p>
+              <Dropdown filteredCoins={filteredCoins} setCoin={setCoin} coin={coin}/>
+            </Col>
             </Row>
             <Row>
-              <Col>
-              </Col>
-              <Col>
-                <CoinData />
+            <Col>
+              <Line
+                data={chartData}
+                height={400}
+                width={900}
+                options={{
+                  maintainAspectRatio: false,
+                }} />
               </Col>
             </Row>
           </Container>
         )
-
-
 }
 
 export default Charts
