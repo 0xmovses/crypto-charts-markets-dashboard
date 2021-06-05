@@ -11,28 +11,32 @@ const CoinFilter = ({coins, setCoins}) => {
 
   const sortByPercent = () => {
     const byChange = coins.sort((a ,b) =>
-    toggle ? (setToggle(false), a.price_change_percentage_24h-b.price_change_percentage_24h) : (setToggle(true), b.price_change_percentage_24h -a.price_change_percentage_24h)
+    toggle ? (setToggle(false), a.price_change_percentage_24h-b.price_change_percentage_24h)
+    : (setToggle(true), b.price_change_percentage_24h -a.price_change_percentage_24h)
     );
     setCoins(byChange)
 };
 
   const sortByVolume = () => {
     const byChange = coins.sort((a,b) =>
-      toggle ? (setToggle(false), a.total_volume - b.total_volume) : (setToggle(true), b.total_volume - a.total_volume)
+      toggle ? (setToggle(false), a.total_volume - b.total_volume)
+      : (setToggle(true), b.total_volume - a.total_volume)
       );
     setCoins(byChange)
   }
 
   const sortByPrice = () => {
     const byChange = coins.sort((a,b) =>
-      toggle ? (setToggle(false), a.current_price - b.current_price) : (setToggle(true), b.current_price - a.current_price)
+      toggle ? (setToggle(false), a.current_price - b.current_price)
+      : (setToggle(true), b.current_price - a.current_price)
       );
     setCoins(byChange)
   }
 
   const sortByMarketcap = () => {
     const byChange = coins.sort((a,b) =>
-      toggle ? (setToggle(false), a.market_cap - b.market_cap) : (setToggle(true), b.market_cap - a.market_cap)
+      toggle ? (setToggle(false), a.market_cap - b.market_cap)
+      : (setToggle(true), b.market_cap - a.market_cap)
       );
     setCoins(byChange)
 
