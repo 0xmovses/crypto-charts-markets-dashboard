@@ -3,6 +3,10 @@ import Select from 'react-select'
 const DropdownCoinList = ({ setCoin, filteredCoins, coin, firstUpdate}) => {
 
   const customStyles = {
+    dropdownIndicator: base => ({
+      ...base,
+      color: 'black'
+    }),
     control: base => ({
       ...base,
       borderColor: 'black',
