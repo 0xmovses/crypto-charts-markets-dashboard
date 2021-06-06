@@ -3,13 +3,12 @@ import Select from 'react-select'
 const DropdownCoinList = ({ setCoin, filteredCoins, coin, firstUpdate}) => {
 
   const customStyles = {
-    placeholder: (defaultStyles) => {
-        return {
-            ...defaultStyles,
-            color: 'black',
-        }
-    }
-}
+    control: base => ({
+      ...base,
+      borderColor: 'black',
+      // This line disable the blue borde
+    })
+  };
 
   const handleChange = (e) => {
     setCoin(e.value);
@@ -33,10 +32,12 @@ const DropdownCoinList = ({ setCoin, filteredCoins, coin, firstUpdate}) => {
       theme={theme => ({
       ...theme,
       borderRadius: 0,
+
       colors: {
         ...theme.colors,
         primary25: 'hotpink',
         primary: 'black',
+        borderRadius: 'black'
       },
     })
 
