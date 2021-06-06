@@ -76,7 +76,8 @@ const historicalChart =() => {
 
 useEffect( () => {
   chart();
-}, [coin, chart]);
+  // eslint-disable-next-line
+}, [coin,]);
 
     return (
           <Container>
