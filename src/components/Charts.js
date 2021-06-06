@@ -1,5 +1,5 @@
-import { useRef, useState, useEffect } from 'react';
-import {Row, Col, Container, Dropdown} from 'react-bootstrap'
+import { useState, useEffect } from 'react';
+import {Row, Col, Container} from 'react-bootstrap'
 import DropdownCoinList from './DropdownCoinList'
 import { format, sub, eachDayOfInterval } from 'date-fns'
 import axios from 'axios';
@@ -12,7 +12,6 @@ const Charts = ({ filteredCoins }) => {
   let dates;
 
   const [coin, setCoin] = useState();
-  const [prices, setPrices] = useState()
   const [chartData, setChartData] = useState({})
 
 
@@ -77,7 +76,7 @@ const historicalChart =() => {
 
 useEffect( () => {
   chart();
-}, [coin]);
+}, [coin, chart]);
 
     return (
           <Container>
