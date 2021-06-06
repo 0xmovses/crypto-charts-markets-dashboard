@@ -7,7 +7,6 @@
   padding: 0;
   font-family: 'Open Sans', sans-serif;
   background-color: #ebbfeb;
-  color: #fff;
 }
 
 h1 {
@@ -25,7 +24,8 @@ p {
   flex-direction: column;
   align-items: center;
   margin-top: 64px;
-  color: #fff;
+  color: #black;
+  border-color: #black
 }
 
 .coin-search {

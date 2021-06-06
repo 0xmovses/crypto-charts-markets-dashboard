@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
-import {Row, Col, Container} from 'react-bootstrap'
-import Dropdown from './Dropdown.js'
+import {Row, Col, Container, Dropdown} from 'react-bootstrap'
+import DropdownCoinList from './DropdownCoinList'
 import { format, sub, eachDayOfInterval } from 'date-fns'
 import axios from 'axios';
 import { Line } from 'react-chartjs-2'
@@ -83,8 +83,7 @@ useEffect( () => {
           <Container>
             <Row>
             <Col>
-              <p>the api may not fetch data immedietly</p>
-              <Dropdown filteredCoins={filteredCoins} setCoin={setCoin} coin={coin}/>
+                <DropdownCoinList id='dropdown'  filteredCoins={filteredCoins} setCoin={setCoin} coin={coin} />
             </Col>
             </Row>
             <Row>
